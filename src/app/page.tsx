@@ -1,3 +1,4 @@
+import CompanyAdd from "./Company/CompanyAdd";
 import Header from "./Header/Header";
 import Sidebar from "./Sidebar/Sidebar";
 
@@ -13,6 +14,7 @@ export default function Home() {
         {/* Main Content */}
         <section className="bg-white md:col-span-1 mx-auto w-full">
           <Header />
+          <CompanyAdd />
         </section>
       </main>
     </div>

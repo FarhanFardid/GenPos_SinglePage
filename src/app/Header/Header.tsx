@@ -19,7 +19,7 @@ const Header = () => {
           <input
             type="text"
             placeholder="Search your page..."
-            className="w-96 px-10 pr-20 py-2 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500"
+            className="w-full px-10 pr-20 py-2 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500"
           />
           <button className="absolute right-1 top-1/2 transform -translate-y-1/2 px-2 py-1 bg-blue-500 text-white rounded-md hover:bg-blue-600 flex justify-center items-center font-bold">
             <svg
