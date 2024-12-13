@@ -1,4 +1,5 @@
 import CompanyAdd from "./Company/CompanyAdd";
+import CompanyForm from "./Form/CompanyForm";
 import Header from "./Header/Header";
 import Sidebar from "./Sidebar/Sidebar";
 
@@ -14,7 +15,12 @@ export default function Home() {
         {/* Main Content */}
         <section className="bg-white md:col-span-1 mx-auto w-full">
           <Header />
+
+          {/* Company Add section component */}
           <CompanyAdd />
+
+          {/* Company Form Section Component */}
+          <CompanyForm />
         </section>
       </main>
     </div>
