@@ -1,8 +1,10 @@
 "use client";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import InputField from "./InputField";
 import DropdownField from "./DropDownField";
 import CommonButton from "../Buttons/CommonButton";
+import { getAllInfoApi } from "../services/information.service";
+import { FilterData } from "../Interface/company-Interface";
 
 interface FormData {
   companyName: string;
@@ -12,21 +14,38 @@ interface FormData {
 }
 
 interface DropdownOptions {
-  groupOptions: { value: string; label: string }[];
-  activeOptions: { value: string; label: string }[];
+  groupOptions: { value: string; text: string }[];
+  activeOptions: { value: string; text: string }[];
 }
 
-const CompanyForm: React.FC = () => {
+const CompanyForm = () => {
+  const [info, setInfo] = useState<FilterData>();
+  const [dropdownOptions, setDropDownOptions] = useState<DropdownOptions>({
+    groupOptions: [],
+    activeOptions: [],
+  });
+
+  useEffect(() => {
+    const fetchData = async () => {
+      const response = await getAllInfoApi();
+      setInfo(response.data);
+      console.log(response.data);
+      setDropDownOptions({
+        groupOptions: response.data.availableGroups,
+        activeOptions: response.data.availableActiveOptions,
+      });
+    };
+
+    fetchData();
+  }, []);
+
+  console.log(info);
+
   const [formData, setFormData] = useState<FormData>({
     companyName: "",
     group: "",
     vatNumber: "",
     active: "",
-  });
-
-  const [dropdownOptions, ] = useState<DropdownOptions>({
-    groupOptions: [],
-    activeOptions: [],
   });
 
   const handleInputChange = (
@@ -36,14 +55,14 @@ const CompanyForm: React.FC = () => {
     setFormData({ ...formData, [name]: value });
   };
 
-//   const handleClear = () => {
-//     setFormData({
-//       companyName: "",
-//       group: "",
-//       vatNumber: "",
-//       active: "",
-//     });
-//   };
+  //   const handleClear = () => {
+  //     setFormData({
+  //       companyName: "",
+  //       group: "",
+  //       vatNumber: "",
+  //       active: "",
+  //     });
+  //   };
 
   return (
     <div className="max-w-full mx-auto md:p-8 bg-white shadow-md rounded-lg">

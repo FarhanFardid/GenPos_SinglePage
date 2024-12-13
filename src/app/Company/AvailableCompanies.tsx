@@ -1,30 +1,26 @@
+import { SearchRequestBody } from "../Interface/company-Interface";
+import { getAllCompaniesApi } from "../services/company.service";
 import CompaniesInfoList from "./CompaniesInfoList";
 
-const AvailableCompanies = () => {
-  const companiesInfo = [
-    {
-      logo: "https://example.com/logo1.png",
-      name: "Company A",
-      group: "Tech Group",
-      vatNumber: "123456789",
-      active: true,
-    },
-    {
-      logo: "https://example.com/logo2.png",
-      name: "Company B",
-      group: "Finance Group",
-      vatNumber: "987654321",
-      active: false,
-    },
-    {
-      logo: "https://example.com/logo3.png",
-      name: "Company C",
-      group: "Retail Group",
-      vatNumber: "112233445",
-      active: true,
-    },
-  ];
+const AvailableCompanies = async () => {  
+  const requestBody: SearchRequestBody = {
+    searchGroupId: 0,
+    searchCompanyName: null,
+    searchVatNumber: null,
+    searchActiveId: 0,
+    page: 1,
+    pageSize: 25,
+    availablePageSizes: ["15", "25", "50", "100"],
+    draw: null,
+    start: 0,
+    length: 15,
+  };
 
+  const response = await getAllCompaniesApi(requestBody);
+  const companiesInfo = response?.data?.data;
+
+  if(!companiesInfo) return (<></>)
+    else
   return (
     <div className="p-8">
       <div className="w-full  mx-auto p-3 md:p-4 my-5 md:my-8  bg-white bg-opacity-80 rounded-lg">
@@ -43,16 +39,13 @@ const AvailableCompanies = () => {
               </tr>
             </thead>
             <tbody className="text-center font-medium">
-              {companiesInfo.map((info, index) => (
+              {companiesInfo.map((company,index) => (
                 <CompaniesInfoList
-                  key={index}
-                  logo={info.logo}
-                  name={info.name}
-                  group={info.group}
-                  vatNumber={info.vatNumber}
-                  active={info.active}
+                key={index}
+                  company = {company}
                 ></CompaniesInfoList>
               ))}
+                
             </tbody>
           </table>
         </div>
