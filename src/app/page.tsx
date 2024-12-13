@@ -1,3 +1,4 @@
+import AvailableCompanies from "./Company/AvailableCompanies";
 import CompanyAdd from "./Company/CompanyAdd";
 import CompanyForm from "./Form/CompanyForm";
 import Header from "./Header/Header";
@@ -21,6 +22,9 @@ export default function Home() {
 
           {/* Company Form Section Component */}
           <CompanyForm />
+
+          {/* Companies Data */}
+          <AvailableCompanies />
         </section>
       </main>
     </div>
