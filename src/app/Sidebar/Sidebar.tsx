@@ -12,7 +12,7 @@ const Sidebar = () => {
       </div>
       <div className="drawer-side min-h-fit border border-black">
         <label htmlFor="my-drawer-2" className="drawer-overlay"></label>
-        <ul className="menu p-4 w-80 text-black ps-5 min-h-full bg-white">
+        <ul className="menu p-4 w-80 text-black min-h-full bg-white">
           <div className="flex  items-center justify-center md:justify-between mb-7">
             <h2 className="text-xl md:text-4xl font-bold text-center ">
               GENPOS
